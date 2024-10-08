@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.example.demo.GameState" %>
+<%@ page import="java.util.Enumeration" %><%--
   Created by IntelliJ IDEA.
   User: malte.aschenbach
   Date: 07.10.2024
@@ -13,13 +14,24 @@
 <body>
 <h1> Guessing Game (JSP) </h1>
 <%
+    GameState gameState = (GameState) session.getAttribute("game_state");
     int guess = (int) session.getAttribute("guess");
-    int correct = (int) session.getAttribute("correct");
 %>
 
+<p>Currently Playing: <%
+    out.println(session.getServletContext().getAttribute("activeSessions"));
+%></p>
 
 <%
-    if (guess != -1) {
+    if (gameState == GameState.START) {
+%>
+    <p>Welcome to Maltes Guessing Game!</p>
+    <p>Wowowowoow</p>
+<%
+    } else if (gameState == GameState.TOO_LOW
+            || gameState == GameState.TOO_HIGH
+            || gameState == GameState.SOLVED
+    ) {
 %>
 <p>
     Your last guess was:
@@ -28,16 +40,22 @@
     %>
 </p>
 <p>
-    <% if (guess < correct) { %>
-        That guess was too low
-    <% } else if (guess > correct) { %>
-        That guess was too high
-    <% } else { %>
-        That's correct!
-    <% } %>
+    <%
+        switch (gameState) {
+            case TOO_LOW:
+                out.println("That guess was too low");
+                break;
+            case TOO_HIGH:
+                out.println("That guess was too high");
+                break;
+            case SOLVED:
+                out.println("That's correct!");
+                break;
+        }
+    %>
 </p>
 <%
-    } else {
+    } else if (gameState == GameState.INVALID_INPUT){
 %>
     <p>Guess has to be an integer</p>
 <%
