@@ -9,16 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bff88eb-7445-44f0-afea-1384a332b17e" name="Changes" comment="Added display for number of active Sessions">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/View.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/demo/ModelTest.java" afterDir="false" />
+    <list default="true" id="9bff88eb-7445-44f0-afea-1384a332b17e" name="Changes" comment="Restructured Program: Servlet is only bothered with the rendering, the Model is only bothered with managing state.&#10;&#10;Tests added!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demo/ModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/demo/ModelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +69,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.HelloServletTest.testServlet.executor": "Debug",
+    "JUnit.ModelTest.executor": "Run",
     "Maven.Unnamed.executor": "Run",
     "Maven.demo [clean].executor": "Run",
     "Maven.demo [compile].executor": "Run",
@@ -101,22 +99,6 @@
   }
 }]]></component>
   <component name="RunManager" selected="JUnit.ModelTest">
-    <configuration name="HelloServletTest.testServlet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.demo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.demo" />
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.HelloServletTest" />
-      <option name="METHOD_NAME" value="testServlet" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
@@ -237,7 +219,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ModelTest" />
-        <item itemvalue="JUnit.HelloServletTest.testServlet" />
       </list>
     </recent_temporary>
   </component>
@@ -257,7 +238,7 @@
       <workItem from="1728048645207" duration="3126000" />
       <workItem from="1728280979523" duration="9788000" />
       <workItem from="1728367771023" duration="4881000" />
-      <workItem from="1728372673294" duration="13190000" />
+      <workItem from="1728372673294" duration="14234000" />
     </task>
     <task id="LOCAL-00001" summary="Working but only one correct per server">
       <option name="closed" value="true" />
@@ -291,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728376553700</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Restructured Program: Servlet is only bothered with the rendering, the Model is only bothered with managing state.&#10;&#10;Tests added!">
+      <option name="closed" value="true" />
+      <created>1728388424970</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728388424970</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +302,8 @@
     <MESSAGE value="different state across browsers" />
     <MESSAGE value="adapted to jsp" />
     <MESSAGE value="Added display for number of active Sessions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added display for number of active Sessions" />
+    <MESSAGE value="Restructured Program: Servlet is only bothered with the rendering, the Model is only bothered with managing state.&#10;&#10;Tests added!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured Program: Servlet is only bothered with the rendering, the Model is only bothered with managing state.&#10;&#10;Tests added!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

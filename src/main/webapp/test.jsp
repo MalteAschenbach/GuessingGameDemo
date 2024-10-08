@@ -17,7 +17,8 @@
 <%
     Model model = (Model) session.getAttribute("model");
     GameState gameState = model.getGameState();
-    Integer guess = model.last_guess;
+    Integer guess = model.getLastGuess();
+    int numberOfGuesses = model.getNumberOfGuesses();
 %>
 
 <p>Currently Playing: <%
@@ -64,11 +65,14 @@
     }
 %>
 
+<% if (gameState != GameState.SOLVED) { %>
 <form action="/demo/hello-servlet" method="post">
     <label for="guess">Your Guess:</label>
     <input type="number" name="guess">
     <input type="submit">
 </form>
+<% } %>
 
+<p>You needed <% out.println(numberOfGuesses); %> guesses</p>
 </body>
 </html>

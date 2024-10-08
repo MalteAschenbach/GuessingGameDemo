@@ -1,30 +1,37 @@
 package com.example.demo;
 
-import javax.servlet.http.HttpServletRequest;
+import lombok.Getter;
 
 public class Model {
 
-    int correct;
-    public Integer last_guess;
+    int correctValue;
+    @Getter
+    Integer lastGuess;
     boolean initial;
-
+    @Getter int numberOfGuesses;
 
     Model() {
-        correct = (int) (Math.random() * 100);
-        last_guess = null;
-        initial = true;
+        correctValue = (int) (Math.random() * 100);
+        reset();
     }
 
     Model(int correct) {
-        this.correct = correct;
-        initial = true;
+        this.correctValue = correct;
+        reset();
     }
 
-    public void recompute_based_on_input(String guess_string) {
+    public void reset() {
+        lastGuess = null;
+        initial = true;
+        numberOfGuesses = 0;
+    }
+
+    public void recomputeBasedOnInput(String guess_string) {
         try {
-            last_guess = Integer.parseInt(guess_string);
+            lastGuess = Integer.parseInt(guess_string);
+            numberOfGuesses++;
         } catch (NumberFormatException e) {
-            last_guess = null;
+            lastGuess = null;
         }
     }
 
@@ -32,11 +39,11 @@ public class Model {
         if (initial) {
             initial = false;
             return GameState.START;
-        } else if (last_guess == null) {
+        } else if (lastGuess == null) {
             return GameState.INVALID_INPUT;
-        } else if (last_guess < correct) {
+        } else if (lastGuess < correctValue) {
             return GameState.TOO_LOW;
-        } else if (last_guess > correct) {
+        } else if (lastGuess > correctValue) {
             return GameState.TOO_HIGH;
         } else {
             return GameState.SOLVED;

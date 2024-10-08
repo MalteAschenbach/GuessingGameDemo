@@ -17,7 +17,7 @@ public class ModelTest {
         Model model = new Model();
 
         model.getGameState();
-        model.recompute_based_on_input("Malte");
+        model.recomputeBasedOnInput("Malte");
         assertEquals(model.getGameState(), GameState.INVALID_INPUT);
     }
 
@@ -26,7 +26,7 @@ public class ModelTest {
         Model model = new Model(50);
 
         model.getGameState();
-        model.recompute_based_on_input("90");
+        model.recomputeBasedOnInput("90");
         assertEquals(model.getGameState(), GameState.TOO_HIGH);
     }
     @Test
@@ -34,7 +34,29 @@ public class ModelTest {
         Model model = new Model(50);
 
         model.getGameState();
-        model.recompute_based_on_input("10");
+        model.recomputeBasedOnInput("10");
         assertEquals(model.getGameState(), GameState.TOO_LOW);
+    }
+
+    @Test
+    public void TestTNumberOfGuessesWithValidInput() {
+        Model model = new Model();
+
+        model.recomputeBasedOnInput("2");
+        model.recomputeBasedOnInput("9");
+        model.recomputeBasedOnInput("100");
+        assertEquals(model.getNumberOfGuesses(), 3);
+    }
+
+    @Test
+    public void TestTNumberOfGuessesWithPartiallyInvalidInput() {
+        Model model = new Model();
+
+        model.recomputeBasedOnInput("2");
+        model.recomputeBasedOnInput("X");
+        model.recomputeBasedOnInput("100");
+        model.recomputeBasedOnInput("Malte");
+        model.recomputeBasedOnInput("10");
+        assertEquals(model.getNumberOfGuesses(), 3);
     }
 }

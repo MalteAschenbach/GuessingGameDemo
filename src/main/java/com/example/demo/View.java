@@ -45,7 +45,7 @@ public class View extends HttpServlet implements HttpSessionListener {
         HttpSession session = request.getSession();
 
         Model model = (Model) session.getAttribute("model");
-        model.recompute_based_on_input(request.getParameter("guess"));
+        model.recomputeBasedOnInput(request.getParameter("guess"));
         session.setAttribute("model", model);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("test.jsp");
