@@ -1,5 +1,6 @@
 <%@ page import="com.example.demo.GameState" %>
-<%@ page import="java.util.Enumeration" %><%--
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.example.demo.Model" %><%--
   Created by IntelliJ IDEA.
   User: malte.aschenbach
   Date: 07.10.2024
@@ -14,8 +15,9 @@
 <body>
 <h1> Guessing Game (JSP) </h1>
 <%
-    GameState gameState = (GameState) session.getAttribute("game_state");
-    int guess = (int) session.getAttribute("guess");
+    Model model = (Model) session.getAttribute("model");
+    GameState gameState = model.getGameState();
+    Integer guess = model.last_guess;
 %>
 
 <p>Currently Playing: <%
@@ -25,13 +27,13 @@
 <%
     if (gameState == GameState.START) {
 %>
-    <p>Welcome to Maltes Guessing Game!</p>
-    <p>Wowowowoow</p>
+<p>Welcome to Maltes Guessing Game!</p>
+<p>Wowowowoow</p>
 <%
-    } else if (gameState == GameState.TOO_LOW
-            || gameState == GameState.TOO_HIGH
-            || gameState == GameState.SOLVED
-    ) {
+} else if (gameState == GameState.TOO_LOW
+        || gameState == GameState.TOO_HIGH
+        || gameState == GameState.SOLVED
+) {
 %>
 <p>
     Your last guess was:
@@ -55,9 +57,9 @@
     %>
 </p>
 <%
-    } else if (gameState == GameState.INVALID_INPUT){
+} else if (gameState == GameState.INVALID_INPUT) {
 %>
-    <p>Guess has to be an integer</p>
+<p>Guess has to be an integer</p>
 <%
     }
 %>
