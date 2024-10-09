@@ -7,9 +7,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 
-@WebServlet(value = "/guessing_game")
+@WebServlet(value = "/guessing_game_servlet")
 @WebListener()
-public class View extends HttpServlet implements HttpSessionListener {
+public class ViewServlet extends HttpServlet implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent sessionEvent) {
         Integer activeSessions = (Integer) sessionEvent
             .getSession()
@@ -34,7 +34,7 @@ public class View extends HttpServlet implements HttpSessionListener {
         HttpSession session = request.getSession();
         session.setAttribute("model", new Model());
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("test.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Servlet/start.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -48,7 +48,7 @@ public class View extends HttpServlet implements HttpSessionListener {
         model.recomputeBasedOnInput(request.getParameter("guess"));
         session.setAttribute("model", model);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("test.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Servlet/start.jsp");
         dispatcher.forward(request, response);
     }
 }

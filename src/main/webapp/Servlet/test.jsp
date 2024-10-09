@@ -66,7 +66,7 @@
 %>
 
 <% if (gameState != GameState.SOLVED) { %>
-<form action="/demo/hello-servlet" method="post">
+<form action="/demo/guessing_game_servlet" method="post">
     <label for="guess">Your Guess:</label>
     <input type="number" name="guess">
     <input type="submit">
