@@ -1,29 +1,25 @@
 package com.example.demo;
 
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import jakarta.servlet.http.HttpSession;
 
-// TODO: Datenbank mit JPA
 // TODO: Non Blocking (Webflux)
 // TODO: Web MVC
 
 @SpringBootApplication
+@AutoConfiguration
 @Controller
 public class ViewSpringBoot implements HttpSessionListener {
 
     private final ServletContext servletContext;
-
-    public static void main(String[] args) {
-        SpringApplication.run(ViewSpringBoot.class, args);
-    }
 
     ViewSpringBoot(ServletContext servletContext) {
         this.servletContext = servletContext;
@@ -45,8 +41,8 @@ public class ViewSpringBoot implements HttpSessionListener {
             .setAttribute("activeSessions", activeSessions + 1);
     }
 
-    @GetMapping({"/"})
-    public String get(
+    @GetMapping({"/start"})
+    public String start(
         HttpSession session,
         org.springframework.ui.Model ui_model
     ) {
@@ -56,11 +52,13 @@ public class ViewSpringBoot implements HttpSessionListener {
 
         ui_model.addAttribute("activeSessions", servletContext.getAttribute("activeSessions"));
 
+        ui_model.addAttribute("winners", model.getWinners());
+
         return "start";
     }
 
-    @PostMapping({"/"})
-    public String post(
+    @GetMapping({"/playing"})
+    public String play(
         @RequestParam("guess") String last_guess,
         HttpSession session,
         org.springframework.ui.Model ui_model
@@ -76,5 +74,16 @@ public class ViewSpringBoot implements HttpSessionListener {
         } else {
             return "playing";
         }
+    }
+
+    @GetMapping({"/saved"})
+    public String save(
+        @RequestParam("name") String name,
+        HttpSession session,
+        org.springframework.ui.Model ui_model
+    ) {
+        Model model = (Model) session.getAttribute("model");
+        model.saveWithName(name);
+        return "redirect:start";
     }
 }

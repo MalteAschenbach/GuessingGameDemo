@@ -13,7 +13,7 @@
 <body>
     <h1> Guessing Game (SpringBoot) </h1>
     <h2>You won in ${model.getNumberOfGuesses()} guesses!</h2>
-    <form action="/" method="dialog">
+    <form action="/saved">
        <label for="name" >Your Name:</label>
         <input type="text" name="name">
         <input type="submit">

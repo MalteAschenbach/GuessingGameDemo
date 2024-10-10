@@ -34,7 +34,7 @@
         </c:when>
     </c:choose>
 </p>
-<form action="/" method="post">
+<form action="/playing" method="get">
     <label for="guess">Your Guess:</label>
     <input type="number" name="guess">
     <input type="submit">
